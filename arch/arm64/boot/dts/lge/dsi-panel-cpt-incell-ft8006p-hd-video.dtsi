@@ -1,0 +1,129 @@
+/* Copyright (c) 2013-2015, The Linux Foundation. All rights reserved.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 and
+ * only version 2 as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+
+&mdss_mdp {
+	dsi_cpt_incell_ft8006p_hd_vid: qcom,mdss_dsi_cpt_ft8006p_hd_video {
+		compatible = "qcom,mdss-dsi-panel";
+		status = "ok";
+		qcom,cont-splash-enabled;
+		qcom,mdss-dsi-panel-name = "CPT INCELL FT8006P HD video mode dsi panel";
+		qcom,mdss-dsi-panel-controller = <&mdss_dsi0>;
+		qcom,mdss-dsi-panel-type = "dsi_video_mode";
+		qcom,mdss-dsi-panel-destination = "display_1";
+		qcom,mdss-dsi-virtual-channel-id = <0>;
+		qcom,mdss-dsi-stream = <0>;
+		qcom,mdss-dsi-panel-framerate = <60>;
+		qcom,mdss-dsi-bpp = <24>;
+		qcom,mdss-dsi-panel-width = <720>;
+		qcom,mdss-dsi-panel-height = <1440>;
+		qcom,mdss-dsi-h-front-porch = <45>;
+		qcom,mdss-dsi-h-back-porch = <25>;
+		qcom,mdss-dsi-h-pulse-width = <14>;
+		qcom,mdss-dsi-h-sync-skew = <0>;
+		qcom,mdss-dsi-v-front-porch = <140>;
+		qcom,mdss-dsi-v-back-porch = <106>;
+		qcom,mdss-dsi-v-pulse-width = <8>;
+
+		qcom,mdss-dsi-h-left-border = <0>;
+		qcom,mdss-dsi-h-right-border = <0>;
+		qcom,mdss-dsi-v-top-border = <0>;
+		qcom,mdss-dsi-v-bottom-border = <0>;
+
+		qcom,mdss-dsi-underflow-color = <0xff>;
+		qcom,mdss-dsi-border-color = <0>;
+
+		qcom,mdss-pan-physical-width-dimension = <64>;
+		qcom,mdss-pan-physical-height-dimension = <129>;
+
+		qcom,mdss-dsi-on-command = [
+			/* Sleep Out */
+			05 01 00 00 78 00 01 11
+			/* Display On */
+			05 01 00 00 96 00 01 29
+		];
+		qcom,mdss-dsi-off-command = [
+			05 01 00 00 14 00 01 28
+			05 01 00 00 78 00 01 10
+		];
+
+/*
+		lge,mdss-dsi-extra-command-names = "lpwg-on";
+
+		lge,mdss-dsi-extra-command-lpwg-on = [
+		];
+
+		lge,mdss-dsi-extra-command-state-lpwg-on = "dsi_lp_mode";
+*/
+		qcom,mdss-dsi-on-command-state = "dsi_lp_mode";
+		qcom,mdss-dsi-off-command-state = "dsi_lp_mode";
+
+		qcom,mdss-dsi-reset-sequence = <0 5>, <2 50>;
+		qcom,mdss-dsi-lp11-init;
+		qcom,mdss-dsi-h-sync-pulse = <1>;
+		qcom,mdss-dsi-traffic-mode = "non_burst_sync_pulse";
+		qcom,mdss-dsi-lane-map = "lane_map_0123";
+		qcom,mdss-dsi-dma-trigger = "trigger_sw";
+		qcom,mdss-dsi-mdp-trigger = "none";
+		qcom,mdss-dsi-color-order = "rgb_swap_rgb";
+		qcom,mdss-dsi-bllp-eof-power-mode;
+		qcom,mdss-dsi-bllp-power-mode;
+		qcom,mdss-dsi-tx-eot-append;
+		qcom,mdss-dsi-lane-0-state;
+		qcom,mdss-dsi-lane-1-state;
+		qcom,mdss-dsi-lane-2-state;
+		qcom,mdss-dsi-lane-3-state;
+
+		qcom,mdss-dsi-panel-timings-phy-v2 = [
+			1F 1C 04 06 03 03 04 a0
+			1F 1C 04 06 03 03 04 a0
+			1F 1C 04 06 03 03 04 a0
+			1F 1C 04 06 03 03 04 a0
+			1F 0F 04 06 03 03 04 a0
+		];
+		qcom,mdss-dsi-t-clk-post = <0x10>;
+		qcom,mdss-dsi-t-clk-pre = <0x32>;
+
+		qcom,mdss-dsi-bl-min-level = <1>;
+		qcom,mdss-dsi-bl-max-level = <255>;
+		qcom,mdss-dsi-bl-pmic-control-type = "bl_ctrl_wled";
+
+		lge,blmap-size = <256>;
+		lge,blmap = <
+			0	23	23	23	23	23	23	23	23	23		/* 0 ~ 9 */
+			23	23	23	23	24	24	24	25	25	25		/* 10 ~ 19 */
+			26	26	26	27	28	30	31	33	34	36		/* 20 ~ 29 */
+			37	39	40	42	43	45	47	49	51	53		/* 30 ~ 39 */
+			55	57	60	62	64	66	68	70	72	75		/* 40 ~ 49 */
+			80	85	90	95	100	105	110	115	120	125		/* 50 ~ 59 */
+			129	134	138	143	148	152	157	162	166	171		/* 60 ~ 69 */
+			176	180	185	190	196	202	208	215	221	227		/* 70 ~ 79 */
+			233	240	246	252	258	265	273	281	289	297		/* 80 ~ 89 */
+			305	313	321	329	337	345	353	361	370	381		/* 90 ~ 99 */
+			393	405	417	429	440	452	464	476	488	500		/* 100 ~ 109 */
+			510	521	532	543	553	564	575	586	596	607		/* 110 ~ 119 */
+			618	629	640	653	667	681	695	708	722	736		/* 120 ~ 129 */
+			750	763	777	791	805	822	840	858	875	893		/* 130 ~ 139 */
+			911	929	946	964	982	1000	1017	1034	1051	1069		/* 140 ~ 149 */
+			1086	1103	1121	1138	1155	1173	1200	1207	1225	1245		/* 150 ~ 159 */
+			1265	1286	1306	1327	1347	1367	1388	1408	1429	1449		/* 160 ~ 169 */
+			1470	1491	1513	1534	1556	1577	1599	1620	1642	1663		/* 170 ~ 179 */
+			1685	1706	1728	1750	1776	1802	1828	1855	1881	1907		/* 180 ~ 189 */
+			1933	1960	1986	2012	2038	2065	2090	2116	2142	2168		/* 190 ~ 199 */
+			2193	2219	2245	2271	2296	2322	2348	2374	2400	2434		/* 200 ~ 209 */
+			2469	2503	2538	2572	2607	2641	2676	2710	2745	2780		/* 210 ~ 219 */
+			2811	2843	2874	2906	2937	2969	3000	3032	3063	3095		/* 220 ~ 229 */
+			3126	3158	3190	3227	3265	3303	3341	3379	3417	3455		/* 230 ~ 239 */
+			3493	3531	3569	3607	3645	3685	3726	3767	3808	3849		/* 240 ~ 249 */
+			3890	3931	3972	4013	4054	4095						/* 250 ~ 255 */
+		>;
+	};
+};

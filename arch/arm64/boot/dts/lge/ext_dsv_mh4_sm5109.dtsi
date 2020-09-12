@@ -1,0 +1,17 @@
+&i2c_2 {
+	ext_dsv@3e {
+		status = "ok";
+		compatible = "ext_dsv";
+		reg = <0x3e>;
+		lge,ext_dsv_primary = <&dsv_sm5109>;
+		//lge,gpio-dsv_ena = <&tlmm 59 0>; //Not used here. SM5109 needs two gpio to enable vsp and vsn each. See panel common dtsi file.
+		dsv_sm5109: ext_dsv_sm5109 {
+			mode-names =
+				"power_on_mode_reg",
+				"power_off_mode_reg";
+
+			power_on_mode_reg = <0x00 0x0F 1>, <0x01 0x0F 1>, <0x03 0x00 1>;
+			power_off_mode_reg = <0x03 0x03 1>; //TODO : fast discharge enabled, but needs to check later
+		};
+	};
+};

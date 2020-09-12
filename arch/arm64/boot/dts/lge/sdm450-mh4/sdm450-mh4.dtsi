@@ -1,0 +1,45 @@
+/*
+ * Copyright (c) 2016, The Linux Foundation. All rights reserved.
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License version 2 and
+ * only version 2 as published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ */
+
+#include "sdm450-mh4-pinctrl.dtsi"
+#include "sdm450-mh4-camera.dtsi"
+#include "sdm450-mh4-panel.dtsi"
+#include "sdm450-mh4-sound.dtsi"
+#include "sdm450-mh4-misc.dtsi"
+#include "sdm450-mh4-sdhc.dtsi"
+#include "sdm450-mh4-pm.dtsi"
+#include "sdm450-mh4-touch.dtsi"
+#include "sdm450-mh4-sensor.dtsi"
+#include "sdm450-mh4-nfc.dtsi"
+#include "sdm450-mh4-usb.dtsi"
+#include "sdm450-mh4-fingerprint_cdfinger.dtsi"
+#include "sdm450-mh4-fingerprint_fpc1511.dtsi"
+
+/ {
+	firmware: firmware {
+		android {
+			fstab {
+				vendor {
+					fsmgr_flags = "wait,slotselect,verify";
+				};
+				system {
+					status = "disabled";
+				};
+			};
+		};
+	};
+};
+
+&mem_client_3_size {
+        qcom,peripheral-size = <0x500000>;
+};

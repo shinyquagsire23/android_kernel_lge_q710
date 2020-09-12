@@ -1,0 +1,62 @@
+#
+# Fingerprints driver configuration
+#
+menuconfig INPUT_FINGERPRINT
+	bool "FingerPrints"
+	help
+	  Say Y here, and a list of supported fingerprints will be displayed.
+	  This option doesn't affect the kernel.
+
+	  If unsure, say Y.
+
+if INPUT_FINGERPRINT
+
+config FINGERPRINT_GOODIX_GF3208
+        tristate "Goodix GF3208 fingerprint drvier support"
+	help
+          Say Y here to enable goodix fingerprint driver support
+
+config INPUT_FPC1511_DUAL
+        tristate "FPC1511 fingerprint sensor support"
+        depends on SPI_MASTER
+
+config INPUT_FPC1511
+        tristate "FPC1511 fingerprint sensor support"
+        depends on SPI_MASTER
+
+config INPUT_FPC1145
+        tristate "FPC1145 fingerprint sensor support"
+        depends on SPI_MASTER
+
+config INPUT_FPC1028
+        tristate "FPC1028 fingerprint sensor support"
+        depends on SPI_MASTER
+
+config INPUT_FPC1028_LAOP
+        bool "FPC1028 fingerprint sensor support LAOP"
+        default n
+
+config INPUT_FPC1028_XPV2
+        tristate "FPC1028 fingerprint sensor support XPV2"
+        depends on SPI_MASTER
+
+config FINGERPRINT_FPS998E_ZQL1606
+	tristate "FPS998E_ZQL1628"
+	depends on SPI
+	help
+	  Say Y here if you have a 88PM860x PMIC and want to enable
+	  support for the built-in touchscreen.
+
+	  If unsure, say N.
+
+	  To compile this driver as a module, choose M here: the
+	  module will be called 88pm860x-ts
+
+if FINGERPRINT_FPS998E_ZQL1606
+config FINGERPRINT_FPS998E_ZQL1606_ID_HI
+	bool "fp id pin is high"
+config FINGERPRINT_FPS998E_ZQL1606_ID_LO
+	bool "fp id pin is low"
+endif
+
+endif
