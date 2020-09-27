@@ -504,6 +504,8 @@ asmlinkage __visible void __init start_kernel(void)
 {
 	char *command_line;
 	char *after_dashes;
+	int i;
+	char tmp[81];
 
 	/*
 	 * Need to run as early as possible, to initialize the
@@ -540,7 +542,20 @@ asmlinkage __visible void __init start_kernel(void)
 	build_all_zonelists(NULL, NULL);
 	page_alloc_init();
 
-	pr_notice("Kernel command line: %s\n", boot_command_line);
+	pr_notice("Kernel command line:");
+	
+	tmp[0] = 0;
+	for (i = 0; i < strlen(boot_command_line); i++)
+	{
+	    tmp[i % 80] = boot_command_line[i];
+	    if ((i && (i % 80 == 0)) || (i == strlen(boot_command_line)-1))
+	    {
+	        tmp[80] = 0;
+	        if ((i == strlen(boot_command_line)-1))
+    	        tmp[(i % 80) + 1] = 0;
+	        pr_notice("%s\n", tmp);
+	    }
+	}
 	parse_early_param();
 	after_dashes = parse_args("Booting kernel",
 				  static_command_line, __start___param,
